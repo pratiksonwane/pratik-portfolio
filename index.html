@@ -1,269 +1,890 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pratik Sonwane Portfolio</title>
-  <!-- External CSS -->
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Google Fonts (Roboto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome v4 for icons -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratik Sonwane | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+        
+        .neon-text {
+            color: #4ade80;
+            text-shadow: 0 0 5px rgba(74, 222, 128, 0.5);
+        }
+        
+        .neon-border {
+            border-color: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+        }
+        
+        .neon-bg {
+            background-color: rgba(74, 222, 128, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(74, 222, 128, 0.2);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: #4ade80;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4ade80;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #4ade80;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4ade80;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #4ade80, #22d3ee);
+        }
+        
+        .contact-input {
+            background: #1e293b;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-input:focus {
+            border-color: #4ade80;
+            box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.2);
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(74, 222, 128, 0.5);
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header & Navigation -->
-  <header class="header animate-on-scroll">
-    <div class="container nav-container">
-      <div class="nav-logo"><i class="fa fa-user-circle"></i> Pratik</div>
-      <nav class="nav">
-        <a href="#hero"><i class="fa fa-home"></i> Home</a>
-        <a href="#about"><i class="fa fa-user"></i> About</a>
-        <a href="#skills"><i class="fa fa-code"></i> Skills</a>
-        <a href="#projects"><i class="fa fa-briefcase"></i> Projects</a>
-        <a href="#certifications"><i class="fa fa-certificate"></i> Certifications</a>
-        <a href="#resume"><i class="fa fa-file-text"></i> My Resume</a>
-        <a href="#contact"><i class="fa fa-envelope"></i> Get in Touch</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-slate-900/80 backdrop-blur-md z-50 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold neon-text">Pratik Sonwane</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#experience" class="nav-link px-3 py-2 text-sm font-medium">Experience</a>
+                        <a href="#projects" class="nav-link px-3 py-2 text-sm font-medium">Projects</a>
+                        <a href="#education" class="nav-link px-3 py-2 text-sm font-medium">Education</a>
+                        <a href="#skills" class="nav-link px-3 py-2 text-sm font-medium">Skills</a>
+                        <a href="#achievements" class="nav-link px-3 py-2 text-sm font-medium">Achievements</a>
+                        <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium">Contact</a>
+                        <a href="#resume" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors">
+                            Resume
+                        </a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-slate-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium">Education</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#achievements" class="block px-3 py-2 rounded-md text-base font-medium">Achievements</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <a href="#resume" class="block px-3 py-2 rounded-md text-base font-medium">Resume</a>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="container hero-content animate-on-scroll">
-      <img src="https://loremflickr.com/120/120/face?lock=101" alt="Profile Image" class="hero-image animate-on-scroll" />
-      <h1 class="hero-title animate-on-scroll">Hi, I'm Pratik Sonwane</h1>
-      <p class="hero-subtitle animate-on-scroll">
-        I design and build engaging digital experiences. Former Systems Engineer at TCS. Now crafting innovative solutions.
-      </p>
-      <a href="#about" class="cta-btn animate-on-scroll">Explore My Work</a>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="neon-text">Pratik Sonwane</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Computer Science Graduate & Developer</h2>
+                    <p class="text-lg text-slate-300 mb-8 max-w-lg">
+                        Passionate about building innovative solutions using cutting-edge technologies. 
+                        Currently pursuing my Master's at UT Arlington with experience in frontend development and leadership.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors">
+                            Contact Me
+                        </a>
+                        <a href="#projects" class="px-6 py-3 border border-green-500 text-green-500 hover:bg-green-900/30 font-medium rounded-lg transition-colors">
+                            View Projects
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 neon-border floating">
+                        <!-- Placeholder for profile image - replace with actual image -->
+                        <div class="w-full h-full bg-slate-700 flex items-center justify-center">
+                            <i class="fas fa-user text-6xl text-slate-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background particles -->
+        <div id="particles-js"></div>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <div class="container about-container animate-on-scroll">
-      <div class="about-content">
-        <img src="https://i.ibb.co/YFw22SSh/IMG-8045-1.jpg" alt="About Image" class="about-img" />
-        <h2 class="section-title animate-on-scroll"><i class="fa fa-user"></i> About Me</h2>
-        <p class="about-text">
-          I'm a passionate software developer and designer with experience in full‑stack development, AI, and user experience.
-          I believe in combining simplicity with functionality to craft elegant solutions to complex problems.
-        </p>
-      </div>
-    </div>
-  </section>
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 bg-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 section-title">Experience</h2>
+            
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="space-y-8">
+                    <!-- TCS Experience -->
+                    <div class="relative pl-8 timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-slate-800 rounded-lg p-6 card-hover neon-bg">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-bold neon-text">Systems Engineer (Frontend Developer)</h3>
+                                <span class="text-sm text-slate-400">Aug 2022 – Aug 2023</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Tata Consultancy Services (TCS), India</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                                <li>Led frontend development for Janssen.com, handling 56 subsites in Drupal.</li>
+                                <li>Built responsive components using HTML, CSS, JavaScript, and PHP.</li>
+                                <li>Collaborated with UI/UX designers and QA for high-performance web solutions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Chick-fil-A Experience -->
+                    <div class="relative pl-8 timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-slate-800 rounded-lg p-6 card-hover neon-bg">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                                <h3 class="text-xl font-bold neon-text">Supervisor</h3>
+                                <span class="text-sm text-slate-400">Aug 2023 – Present</span>
+                            </div>
+                            <h4 class="text-lg font-semibold mb-2">Chick-fil-A UTA (Chartwells), Arlington, TX</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                                <li>Managed shift schedules, trained new employees, and ensured timely service.</li>
+                                <li>Honed leadership and team coordination under high-pressure situations.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="skills-section">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll"><i class="fa fa-code"></i> Skills</h2>
-      <div class="projects-grid">
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/programming?lock=103');"></div>
-          <div class="project-info">
-            <h3>Programming Languages</h3>
-            <p>Java, C#, .NET, JavaScript, C++, Python, PHP, VB, Drupal 9</p>
-          </div>
+    <!-- Projects Section -->
+    <section id="projects" class="py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 section-title">Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold neon-text">Laptop Price Prediction System</h3>
+                            <a href="#" class="text-green-500 hover:text-green-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            Used Python, Jupyter, and scikit-learn to predict laptop prices with 89% accuracy.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Python</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">scikit-learn</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Jupyter</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Performed feature selection and residual analysis; improved reliability by 30%.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold neon-text">COVID-19 Live Tracker Web App</h3>
+                            <a href="#" class="text-green-500 hover:text-green-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            Built using HTML, CSS, JavaScript, Leaflet.js, and REST APIs.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">JavaScript</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Leaflet.js</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">REST API</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Provided real-time data for 28 states and 100+ cities; deployed on Netlify.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold neon-text">Wanderlust – Unity 3D Quiz Game</h3>
+                            <a href="#" class="text-green-500 hover:text-green-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            Designed a 3D game in Unity with C# for city exploration and quizzes.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Unity 3D</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">C#</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Game Dev</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Promoted knowledge through interactive play across 10 levels.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold neon-text">Hate Speech Detection using LLMs</h3>
+                            <a href="#" class="text-green-500 hover:text-green-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            Used HuggingFace + RoBERTa model to classify hate speech content.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">NLP</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">RoBERTa</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">HuggingFace</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Achieved high accuracy across metrics: precision, recall, F1-score.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold neon-text">Semantic Movie Search App</h3>
+                            <a href="#" class="text-green-500 hover:text-green-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            Leveraged HuggingFace embeddings + Pinecone DB + Streamlit for search.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Streamlit</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Pinecone</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Embeddings</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Enabled similarity-based semantic movie recommendations from IMDB.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="bg-slate-800 rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold neon-text">Food Delivery Database System</h3>
+                            <a href="#" class="text-green-500 hover:text-green-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            Designed schema for students, restaurants, agents, orders, and promos.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">MySQL</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Database</span>
+                            <span class="px-2 py-1 text-xs rounded-full bg-slate-700 text-green-400">Schema Design</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Performed analytical queries for revenue, peak hours, and agent rankings.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/algorithm?lock=104');"></div>
-          <div class="project-info">
-            <h3>Algorithms &amp; Data Structures</h3>
-            <p>Design, optimization, and performance improvement</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/software-development?lock=105');"></div>
-          <div class="project-info">
-            <h3>Software Development</h3>
-            <p>REST APIs, microservices, full‑stack deployment, DevOps</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/server?lock=106');"></div>
-          <div class="project-info">
-            <h3>System Administration</h3>
-            <p>Server management, database optimization, CI/CD, AWS, Azure, Docker, Kubernetes</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/teamwork?lock=107');"></div>
-          <div class="project-info">
-            <h3>Collaboration &amp; Communication</h3>
-            <p>Technical documentation, Agile methodologies, cross‑functional teamwork</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="projects-section">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll"><i class="fa fa-briefcase"></i> Featured Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/laptop,technology?lock=108');"></div>
-          <div class="project-info">
-            <h3>Laptop Price Prediction</h3>
-            <p>Machine learning model with multiple linear regression achieving 89% accuracy.</p>
-            <a href="#" class="project-btn">View Project</a>
-          </div>
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 section-title">Education</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- UT Arlington -->
+                <div class="bg-slate-800 rounded-xl p-6 card-hover neon-bg">
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 h-12 w-12 rounded-full bg-slate-700 flex items-center justify-center mr-4">
+                            <i class="fas fa-university text-xl text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold neon-text">Master of Science in Computer Science</h3>
+                            <h4 class="text-lg font-semibold">University of Texas at Arlington</h4>
+                            <p class="text-slate-400">Arlington, TX</p>
+                        </div>
+                    </div>
+                    <div class="pl-16">
+                        <p class="text-slate-300 mb-2">Aug 2023 – May 2025</p>
+                        <p class="text-slate-300">
+                            Currently pursuing advanced studies in computer science with focus on AI and machine learning.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- MGM College -->
+                <div class="bg-slate-800 rounded-xl p-6 card-hover neon-bg">
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 h-12 w-12 rounded-full bg-slate-700 flex items-center justify-center mr-4">
+                            <i class="fas fa-university text-xl text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold neon-text">Bachelor of Engineering in Computer Science</h3>
+                            <h4 class="text-lg font-semibold">MGM College of Engineering</h4>
+                            <p class="text-slate-400">Nanded, India</p>
+                        </div>
+                    </div>
+                    <div class="pl-16">
+                        <p class="text-slate-300 mb-2">Aug 2018 – Aug 2022</p>
+                        <p class="text-slate-300">
+                            Graduated with comprehensive knowledge in computer science fundamentals and software development.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/covid,health?lock=109');"></div>
-          <div class="project-info">
-            <h3>COVID Tracker</h3>
-            <p>Real‑time app tracking COVID cases across 28 states and 100 cities.</p>
-            <a href="#" class="project-btn">View Project</a>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/game,virtual?lock=110');"></div>
-          <div class="project-info">
-            <h3>Wanderlust Game</h3>
-            <p>An immersive game with interactive quizzes about iconic landmarks.</p>
-            <a href="#" class="project-btn">View Project</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Certifications Section -->
-  <section id="certifications" class="certifications-section">
-    <div class="container">
-      <h2 class="section-title animate-on-scroll"><i class="fa fa-certificate"></i> Certifications</h2>
-      <div class="projects-grid certifications-grid">
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/bank?lock=111');"></div>
-          <div class="project-info">
-            <h3>Software‑Engineering Virtual Experience</h3>
-            <p>JPMorgan Chase &amp; Co. — 2023</p>
-          </div>
+    <!-- Skills Section -->
+    <section id="skills" class="py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 section-title">Skills & Tools</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Languages -->
+                <div class="bg-slate-800 rounded-xl p-6 card-hover">
+                    <h3 class="text-xl font-bold neon-text mb-4">Languages</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">Python</span>
+                                <span class="text-sm text-slate-400">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">JavaScript</span>
+                                <span class="text-sm text-slate-400">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">HTML/CSS</span>
+                                <span class="text-sm text-slate-400">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">PHP</span>
+                                <span class="text-sm text-slate-400">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">SQL</span>
+                                <span class="text-sm text-slate-400">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Frameworks & Libraries -->
+                <div class="bg-slate-800 rounded-xl p-6 card-hover">
+                    <h3 class="text-xl font-bold neon-text mb-4">Frameworks & Libraries</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fab fa-react text-blue-400 mr-2"></i>
+                            <span>React</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-code text-green-400 mr-2"></i>
+                            <span>Streamlit</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-map-marked-alt text-green-400 mr-2"></i>
+                            <span>Leaflet.js</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-gamepad text-purple-400 mr-2"></i>
+                            <span>Unity 3D</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-motion text-pink-400 mr-2"></i>
+                            <span>Framer Motion</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-brain text-yellow-400 mr-2"></i>
+                            <span>scikit-learn</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Tools & Technologies -->
+                <div class="bg-slate-800 rounded-xl p-6 card-hover">
+                    <h3 class="text-xl font-bold neon-text mb-4">Tools & Technologies</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fab fa-git-alt text-orange-400 mr-2"></i>
+                            <span>Git</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fab fa-aws text-yellow-400 mr-2"></i>
+                            <span>AWS</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-database text-blue-400 mr-2"></i>
+                            <span>MySQL</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-database text-green-400 mr-2"></i>
+                            <span>MongoDB</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-fire text-orange-400 mr-2"></i>
+                            <span>Firebase</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-network-wired text-green-400 mr-2"></i>
+                            <span>REST APIs</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-robot text-purple-400 mr-2"></i>
+                            <span>LLMs</span>
+                        </span>
+                        <span class="px-3 py-2 rounded-lg bg-slate-700 flex items-center">
+                            <i class="fas fa-language text-blue-400 mr-2"></i>
+                            <span>NLP</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/php?lock=112');"></div>
-          <div class="project-info">
-            <h3>Learning PHP</h3>
-            <p>LinkedIn — 2022</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/bootstrap?lock=113');"></div>
-          <div class="project-info">
-            <h3>Responsive Web Pages using Bootstrap 4</h3>
-            <p>Infosys Pvt. Ltd. — 2022</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/css?lock=114');"></div>
-          <div class="project-info">
-            <h3>CSS3</h3>
-            <p>Infosys Pvt. Ltd. — 2022</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/html?lock=115');"></div>
-          <div class="project-info">
-            <h3>HTML5 – The Language</h3>
-            <p>Infosys Pvt. Ltd. — 2022</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/javascript?lock=116');"></div>
-          <div class="project-info">
-            <h3>JavaScript</h3>
-            <p>Infosys Pvt. Ltd. — 2022</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/react?lock=117');"></div>
-          <div class="project-info">
-            <h3>React JS</h3>
-            <p>Infosys Pvt. Ltd. — 2022</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/python?lock=118');"></div>
-          <div class="project-info">
-            <h3>Python for Data Science, AI &amp; Development</h3>
-            <p>Coursera — 2021</p>
-          </div>
-        </div>
-        <div class="project-card animate-on-scroll">
-          <div class="project-image" style="background-image: url('https://loremflickr.com/600/400/java?lock=119');"></div>
-          <div class="project-info">
-            <h3>Programming in Java</h3>
-            <p>NPTEL (IIT Kharagpur) — 2020</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Resume Section -->
-  <section id="resume" class="resume-section">
-    <div class="container resume-container animate-on-scroll">
-      <h2 class="section-title animate-on-scroll"><i class="fa fa-file-text"></i> My Resume</h2>
-      <p class="resume-text animate-on-scroll">
-        View or download my resume to know more about my professional background and experience.
-      </p>
-      <div class="resume-links">
-        <a href="https://drive.google.com/file/d/1n4QaBQOAKZFBStoHB8Gcluo7reICklbd/view?usp=sharing" target="_blank" class="resume-btn animate-on-scroll">
-          <i class="fa fa-eye"></i> View Resume
-        </a>
-        <a href="https://drive.google.com/uc?export=download&id=1n4QaBQOAKZFBStoHB8Gcluo7reICklbd" class="resume-btn animate-on-scroll">
-          <i class="fa fa-download"></i> Download Resume
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-16 bg-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 section-title">Achievements & Leadership</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Achievement 1 -->
+                <div class="bg-slate-800 rounded-xl p-6 card-hover neon-bg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-12 w-12 rounded-full bg-slate-700 flex items-center justify-center mr-4">
+                            <i class="fas fa-trophy text-xl text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold neon-text">President, Computer Society of India (CSI)</h3>
+                            <p class="text-slate-300">MGM College of Engineering</p>
+                        </div>
+                    </div>
+                    <div class="pl-16 mt-4">
+                        <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                            <li>Led hackathon teams; won 1st prize in ReactJS competition</li>
+                            <li>Participated in SRIIH 2021</li>
+                            <li>Designed assignments for junior Python courses</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Achievement 2 -->
+                <div class="bg-slate-800 rounded-xl p-6 card-hover neon-bg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-12 w-12 rounded-full bg-slate-700 flex items-center justify-center mr-4">
+                            <i class="fas fa-medal text-xl text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold neon-text">Academic Contributions</h3>
+                            <p class="text-slate-300">MGM College of Engineering</p>
+                        </div>
+                    </div>
+                    <div class="pl-16 mt-4">
+                        <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                            <li>Created unit test papers as part of academic contribution</li>
+                            <li>Mentored junior students in programming competitions</li>
+                            <li>Organized tech workshops and coding bootcamps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Get in Touch Section -->
-  <section id="contact" class="contact-section">
-    <div class="contact-bg"></div>
-    <div class="contact-overlay"></div>
-    <div class="container contact-content animate-on-scroll">
-      <h2 class="section-title animate-on-scroll"><i class="fa fa-envelope"></i> Get in Touch</h2>
-      <p class="contact-text animate-on-scroll">
-        I'd love to hear from you. Whether you have a project in mind or simply want to say hello, drop me a line!
-      </p>
-      <div class="contact-links">
-        <a href="mailto:pxs0610@mavs.uta.edu" class="contact-link animate-on-scroll">
-          <i class="fa fa-envelope"></i> Email
-        </a>
-        <a href="https://www.linkedin.com/in/pratik-sonwane-08" target="_blank" class="contact-link animate-on-scroll">
-          <i class="fa fa-linkedin"></i> LinkedIn
-        </a>
-        <a href="tel:6823750574" class="contact-link animate-on-scroll">
-          <i class="fa fa-phone"></i> Phone
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="footer animate-on-scroll">
-    <div class="container">
-      <p>&copy; 2023 Pratik Sonwane. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Resume Section -->
+    <section id="resume" class="py-16 bg-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 section-title">My Resume</h2>
+            
+            <div class="bg-slate-800 rounded-xl p-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                    <div>
+                        <h3 class="text-2xl font-bold neon-text">Pratik Sonwane</h3>
+                        <p class="text-slate-400">Computer Science Graduate & Developer</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors" id="download-resume">
+                            <i class="fas fa-download mr-2"></i> Download Resume
+                        </a>
+                        <span class="ml-4 text-sm text-slate-400" id="download-count">0 downloads</span>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-900 rounded-lg overflow-hidden">
+                    <iframe src="https://docs.google.com/viewer?url=https://drive.google.com/file/d/1n4QaBQOAKZFBStoHB8Gcluo7reICklbd/view&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- JavaScript for scroll-triggered animations -->
-  <script>
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 section-title">Get In Touch</h2>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold neon-text mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center mr-4 neon-bg">
+                                <i class="fas fa-envelope text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-slate-400">pratiksonwane2000@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center mr-4 neon-bg">
+                                <i class="fas fa-map-marker-alt text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Location</h4>
+                                <p class="text-slate-400">Arlington, TX, USA</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center mr-4 neon-bg">
+                                <i class="fab fa-linkedin-in text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">LinkedIn</h4>
+                                <p class="text-slate-400">linkedin.com/in/pratik-sonwane-08</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center mr-4 neon-bg">
+                                <i class="fab fa-github text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">GitHub</h4>
+                                <p class="text-slate-400">https://github.com/pratiksonwane</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg contact-input">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg contact-input">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg contact-input"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                    <div id="form-success" class="hidden mt-4 p-4 bg-green-900/30 rounded-lg border border-green-500">
+                        <p class="text-green-400">Thank you for your message! I'll get back to you soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-xl font-bold neon-text">Pratik Sonwane</span>
+                    <p class="text-slate-400 mt-1">Computer Science Graduate & Developer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-green-500 transition-colors">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-green-500 transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-green-500 transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-green-500 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+                <p>&copy; 2023 Pratik Sonwane. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            setTimeout(() => {
+                document.getElementById('form-success').classList.remove('hidden');
+                this.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('form-success').classList.add('hidden');
+                }, 5000);
+            }, 1000);
+        });
+        
+        // Resume download counter
+        let downloadCount = localStorage.getItem('resumeDownloadCount') || 0;
+        document.getElementById('download-count').textContent = `${downloadCount} downloads`;
+        
+        document.getElementById('download-resume').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Increment download count
+            downloadCount++;
+            localStorage.setItem('resumeDownloadCount', downloadCount);
+            document.getElementById('download-count').textContent = `${downloadCount} downloads`;
+            
+            // Simulate download
+            const link = document.createElement('a');
+            link.href = 'https://drive.google.com/file/d/1n4QaBQOAKZFBStoHB8Gcluo7reICklbd/view';
+            link.download = 'Pratik_Sonwane_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+        
+        // Simple particle system for hero section
+        function createParticles() {
+            const container = document.getElementById('particles-js');
+            if (!container) return;
+            
+            const particleCount = 30;
+            const colors = ['rgba(74, 222, 128, 0.5)', 'rgba(34, 211, 238, 0.5)', 'rgba(167, 139, 250, 0.5)'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.background = color;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                container.appendChild(particle);
+            }
         }
-      });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
-      observer.observe(el);
-    });
-  </script>
+        
+        // Initialize on load
+        window.addEventListener('load', function() {
+            createParticles();
+        });
+    </script>
 </body>
 </html>
